@@ -1,2 +1,2 @@
-# firefighters
-the red thread model of MISS-ABMS
+# Firefighters
+The red thread model of MISS-ABMS
