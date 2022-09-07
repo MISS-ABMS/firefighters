@@ -86,14 +86,14 @@ to patroll ; turtle context
     set action "fighting"
     set state "burned"
   ][
-    ifelse any? neighbors with [state = "burning"]
+    ifelse any? neighbors4 with [state = "burning"]
     [
-      move-to one-of neighbors with [state = "burning"]
+      move-to one-of neighbors4 with [state = "burning"]
       set action "fighting"
     ][
       ;right (random 91) - 45
       ;move-to patch-ahead 1
-      move-to one-of neighbors
+      move-to one-of neighbors4
       set action "patrolling"
     ]
   ]
@@ -104,11 +104,13 @@ to call-for-help
   let my-helpers turtles with [group-id = my-gr-id and action = "patrolling"]
   if any? my-helpers
   [
-    let my-neigh-fires neighbors with [state = "burning"]
+    let my-neigh-fires neighbors4 with [state = "burning"]
     if any? my-neigh-fires
     [
       ask my-helpers[
-        move-to one-of my-neigh-fires
+        ;move-to one-of my-neigh-fires
+        let choicep one-of my-neigh-fires
+        move-to min-one-of neighbors4 [distance choicep]
         set action "join"
       ]
     ]
@@ -276,7 +278,7 @@ nb-groups
 nb-groups
 1
 6
-5.0
+4.0
 1
 1
 NIL
@@ -668,15 +670,8 @@ NetLogo 6.2.0
     <metric>count patches with [state = "burned"]</metric>
     <enumeratedValueSet variable="nb-firefighters">
       <value value="12"/>
-      <value value="24"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="propforest">
-      <value value="25"/>
-      <value value="50"/>
-      <value value="66"/>
-      <value value="75"/>
-      <value value="100"/>
-    </enumeratedValueSet>
+    <steppedValueSet variable="propforest" first="10" step="10" last="100"/>
     <enumeratedValueSet variable="communication?">
       <value value="true"/>
     </enumeratedValueSet>
