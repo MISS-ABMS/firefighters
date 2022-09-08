@@ -5,19 +5,24 @@
 
 ### Purpose 
 
+The modelling excercise purpose is didactical.
+
 The objective of the model is to understand if the number of groups of communicating firefighters has an effect on the efficiency of the fire fighting brigade when initially a fire breaks out in a forested plot randomly picked.
+
 
 ### Entities, state variables and scales
 
-Cells : state (forest, clear, fire)
-Firefighters : state (patrolling, fighting) ; group-id
+Cells: state (forest, clear, fire, hash)
+Firefighters: activity (patrolling, fighting) ; colleagues of the same group.
+Groups: list of firefighters of the group.
 
-Spatial scales: cells = 1 spatial unit = 100m, 30 x 30 cells (3000m x 3000m) in a non-torus world.
-Temporal scale: time step of 1h corresponding to 1 movement of patrolling of the firefighters and the spread of fire to neighboring cells.
+Spatial scales: 1 cell = 1 spatial unit = 100m x 100m, 30 x 30 cells (3000m x 3000m) in a non-torus world.
+Temporal scales: time step of 1h, simulations end when there is no fire on the world. 
 
 ### Process overview and scheduling
 Each time step first the fire is propagated from the cells already in fires to their neighbors (SM 1 - fire propagation); second the firefighters patroll and fight the fires (SM 2 - firefighters activity) and third, if the communication is ON the firefighters HELP (SM3 TO DEFINE).
 
+corresponding to 1 movement of patrolling of the firefighters and the spread of fire to neighboring cells.
 
 ## Design concepts
 
